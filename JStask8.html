@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS TASK 8</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, peach, blue);
+      }
+
+      .error {
+        border: 2px solid red;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 500px;
+        margin-bottom: 10px;
+      }
+
+      .container {
+        width: fit-content;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      caption {
+        color: blue;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="password"],
+      textarea {
+        width: 98%;
+      }
+
+      textarea {
+        height: 64px;
+      }
+
+      .validation-message {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html"><button>&leftarrow;</button></a>
+    <h2>JS TASK8</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+      <div
+        class="container"
+        style="background-image: linear-gradient(bisque, pink)"
+      >
+        <table>
+          <caption>
+            Registration Form
+          </caption>
+          <tr>
+            <th><label for="firstname">First Name:</label></th>
+            <td>
+              <input
+                type="text"
+                name="firstname"
+                onchange="validateField(this, 'firstname-validation')"
+              />
+              <span id="firstname-validation" class="validation-message"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <th><label for="lastname">Last Name:</label></th>
+            <td>
+              <input
+                type="text"
+                name="lastname"
+                onchange="validateField(this, 'lastname-validation')"
+              />
+              <span id="lastname-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="mail">Email:</label></th>
+            <td>
+              <input
+                type="email"
+                name="mail"
+                onchange="validateField(this, 'mail-validation')"
+              />
+              <span id="mail-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="password">Password:</label></th>
+            <td>
+              <input
+                type="password"
+                name="password"
+                onchange="validateField(this, 'password-validation')"
+              />
+              <span id="password-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="repassword">Re-enter Password:</label></th>
+            <td>
+              <input
+                type="password"
+                name="repassword"
+                onchange="validateField(this, 'repassword-validation')"
+              />
+              <span
+                id="repassword-validation"
+                class="validation-message"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Gender</label></th>
+            <td align="left">
+              <input type="radio" name="gender" value="male" />Male
+              <br />
+              <input type="radio" name="gender" value="female" />Female
+            </td>
+          </tr>
+          <tr>
+            <th><label for="age">Age:</label></th>
+            <td>
+              <input
+                type="number"
+                name="age"
+                onchange="validateField(this, 'age-validation')"
+              />
+              <span id="age-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="phno">Phone Number:</label></th>
+            <td>
+              <input
+                type="tel"
+                name="phno"
+                maxlength="10"
+                onchange="validateField(this, 'phno-validation')"
+              />
+              <span id="phno-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Address</label></th>
+            <td>
+              <textarea
+                name="address"
+                maxlength="50"
+                onchange="validateField(this, 'address-validation')"
+              ></textarea>
+              <span id="address-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="state">State:</label></th>
+            <td>
+              <input
+                type="text"
+                name="state"
+                onchange="validateField(this, 'state-validation')"
+              />
+              <span id="state-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Country</label></th>
+            <td>
+              <select
+                name="country"
+                onchange="validateField(this, 'country-validation')"
+              >
+                <option value="">--Select--</option>
+                <option value="India">India</option>
+                <option value="United State">United State</option>
+                <option value="Japan">Japan</option>
+              </select>
+              <span id="country-validation" class="validation-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Language Known:</label></th>
+            <td>
+              <input type="checkbox" name="language" value="English" />English
+              <input type="checkbox" name="language" value="Kannada" />Kannada
+              <input type="checkbox" name="language" value="Hindi" />Hindi
+              <input type="checkbox" name="language" value="Telugu" />Telugu
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="checkbox" checked />Hereby I declare all the given
+              details are true
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right">
+              Login in to <a href="https:www.ethnus.com">Ethnus</a>website.
+            </td>
+          </tr>
+        </table>
+        <center>
+          <input type="submit" value="Register" />
+        </center>
+      </div>
+    </form>
+
+    <script>
+      function validateField(input, validationMessageId) {
+        const value = input.value.trim();
+        const validationMessage = document.getElementById(validationMessageId);
+
+        if (value === "") {
+          validationMessage.textContent = "Poor";
+          validationMessage.style.color = "red";
+        } else {
+          validationMessage.textContent = "Good";
+          validationMessage.style.color = "green";
+        }
+      }
+
+      function validateForm() {
+        const inputs = document.querySelectorAll(
+          "input[type='text'], input[type='number'], input[type='email'], input[type='tel'], input[type='password'], textarea"
+        );
+        let isValid = true;
+
+        inputs.forEach((input) => {
+          const value = input.value.trim();
+          const validationMessageId =
+            input.getAttribute("name") + "-validation";
+          const validationMessage =
+            document.getElementById(validationMessageId);
+
+          if (value === "") {
+            validationMessage.textContent = "Poor";
+
+            validationMessage.style.color = "red";
+            isValid = false;
+          } else {
+            validationMessage.textContent = "Good";
+            validationMessage.style.color = "green";
+          }
+        });
+
+        if (!isValid) {
+          return false;
+        }
+
+        return isValid;
+      }
+    </script>
+  </body>
+</html>

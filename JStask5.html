@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS TASK 5</title>
+  </head>
+  <style>
+    div {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 10px 0px;
+    }
+  </style>
+  <body>
+    <a href="index.html"><button>&leftarrow;</button></a>
+    <h3>JS TASK 5</h3>
+    <br /><br /><br />
+    <form id="contactForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <span class="error" id="nameError"></span>
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+        <span class="error" id="emailError"></span>
+      </div>
+
+      <div>
+        <label for="website">Website:</label>
+        <input type="text" id="website" name="website" />
+        <span class="error" id="websiteError"></span>
+      </div>
+
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea>
+        <span class="error" id="messageError"></span>
+      </div>
+
+      <input type="submit" value="Submit" />
+    </form>
+    <script>
+      const contactForm = document.getElementById("contactForm");
+
+      contactForm.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        // Validate name
+        const nameInput = document.getElementById("name");
+        const nameError = document.getElementById("nameError");
+        if (!nameInput.value) {
+          nameError.textContent = "This field is required";
+          nameError.style.color = "red";
+          nameInput.style.border = "3px solid red";
+          nameInput.classList.add("error");
+          isValid = false;
+        } else {
+          nameError.textContent = "";
+          nameInput.style.border = "1px solid black";
+          nameInput.classList.remove("error");
+        }
+
+        // Validate email
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailInput.value || !emailPattern.test(emailInput.value)) {
+          emailError.textContent = "Valid email is required";
+          emailError.style.color = "red";
+          emailInput.style.border = "3px solid red";
+          emailInput.classList.add("error");
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+          emailInput.style.border = "1px solid black";
+          emailInput.classList.remove("error");
+        }
+
+        // Validate website
+        const websiteInput = document.getElementById("website");
+        const websiteError = document.getElementById("websiteError");
+        const websitePattern =
+          /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+        if (!websitePattern.test(websiteInput.value)) {
+          websiteError.textContent = "Valid website URL is required";
+          websiteError.style.color = "red";
+          websiteInput.style.border = "3px solid red";
+          websiteInput.classList.add("error");
+          isValid = false;
+        } else {
+          websiteError.textContent = "";
+          websiteInput.style.border = "1px solid black";
+          websiteInput.classList.remove("error");
+        }
+
+        // Validate message
+        const messageInput = document.getElementById("message");
+        const messageError = document.getElementById("messageError");
+        if (!messageInput.value) {
+          messageError.textContent = "This field is required";
+          messageError.style.color = "red";
+          messageInput.style.border = "3px solid red";
+          messageInput.classList.add("error");
+          isValid = false;
+        } else {
+          messageError.textContent = "";
+          messageInput.style.border = "1px solid black";
+          messageInput.classList.remove("error");
+        }
+
+        // Prevent form submission if there are validation errors
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

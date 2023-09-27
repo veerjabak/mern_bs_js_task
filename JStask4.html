@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="index.html"><button>&leftarrow;</button></a>
+    <h3>JS TASK 4</h3>
+    <br /><br /><br />
+    <button type="button" onclick="displayCurrentDate()">Show Date</button>
+    <div class="result">
+      <p id="currentDate"></p>
+    </div>
+    <button type="button" onclick="displayCurrentTime()">
+      Show Current Time
+    </button>
+    <div class="result">
+      <p id="currentDateTime"></p>
+    </div>
+    <script>
+      function displayCurrentDate() {
+        const currentDate = new Date();
+        const day = currentDate.getDate().toString();
+        const month = new Intl.DateTimeFormat("en-US", {
+          month: "long",
+        }).format(currentDate);
+        const year = currentDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+        document.getElementById("currentDate").textContent = formattedDate;
+      }
+
+      function displayCurrentTime() {
+        const currentDate = new Date();
+        const formattedTime = currentDate.toString();
+        document.getElementById("currentDateTime").textContent = formattedTime;
+      }
+    </script>
+  </body>
+</html>
